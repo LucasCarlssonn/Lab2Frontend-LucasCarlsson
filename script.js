@@ -22,11 +22,11 @@ function validate() {
     document.getElementById("question2_error").innerHTML = ""
     document.getElementById("question3_error").innerHTML = ""
     document.getElementById("fname").style = "default"
-    document.getElementById("fname").style = "default"
-    document.getElementById("fname").style = "default"
+    document.getElementById("lname").style = "default"
+    document.getElementById("email").style = "default"
 
 
-    if (fname == "" || !(/^[a-ö]*$/i.test(fname))) {
+ 
         if(fname == ""){
             document.getElementById("fname_error").innerHTML = "First name must be filled out";
             document.getElementById("fname").style = ERROR_STYLE;
@@ -34,42 +34,36 @@ function validate() {
             document.getElementById("fname_error").innerHTML = "First name must only contain letters";
             document.getElementById("fname").style = ERROR_STYLE;
         }
-        return false
-    } 
-    else if (lname == "" || !(/^[a-ö]*$/i.test(lname))){
         if (lname == ""){
             document.getElementById("lname_error").innerHTML = "Last name must be filled out";
             document.getElementById("lname").style = ERROR_STYLE;
-        } else if (!(/^[a-ö]*$/i.test(lname))){
+        }
+        if (!(/^[a-ö]*$/i.test(lname))){
             document.getElementById("lname_error").innerHTML = "Last name must only contain letters";
             document.getElementById("lname").style = ERROR_STYLE;
         }
-        return false
-    }
-    else if (email == "" || (!(/\S+[@]\S+[.]\S+/.test(email)) || email.includes(" "))){
         if (email == ""){
             document.getElementById("email_error").innerHTML = "Email must be filled out";
             document.getElementById("email").style = ERROR_STYLE;
-        } else if (!(/\S+[@]\S+[.]\S+/.test(email)) || email.includes(" ")){
+        }
+        if (!(/\S+[@]\S+[.]\S+/.test(email)) || email.includes(" ")){
             document.getElementById("email_error").innerHTML = "Email must not contain spaces and follow the format xxxx@xxxx.xxx";
             document.getElementById("email").style = ERROR_STYLE;
         }
-        return false
-    }
-    else if (!checkbox.includes(true)){
+    
+    
+    if (!checkbox.includes(true)){
         document.getElementById("question1_error").innerHTML = "Please fill in question 1";
-        return false
+        
 
     }
-    else if (radio == ""){
+    if (radio == ""){
         document.getElementById("question2_error").innerHTML = "Please fill in question 2";
-        return false
 
-    } else if (text == ""){
-        document.getElementById("question3_error").innerHTML = "Please fill in question 3";
-        return false
     }
-    else{
+    if (text == ""){
+        document.getElementById("question3_error").innerHTML = "Please fill in question 3";
+    }
         if (radio == 1){
             score += 1;
         }
@@ -85,5 +79,4 @@ function validate() {
         }
         document.getElementById("score").innerHTML = "Your score is " + score + "/4"
         return false
-}
 }
