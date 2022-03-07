@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js"></script>
     <link href="style.css" rel="stylesheet">
-    <title>Document</title>
+    <title>Quiz</title>
 </head>
 <body id="form">
-    <form name="myForm" onsubmit="return validate()">
+    <form name="myForm" onsubmit="return validate(false)">
         <label for="fname">First name:</label><br>
         <input type="text" id="fname" name="fname"><br>
         <small id="fname_error"></small><br>
@@ -21,7 +21,7 @@
         <small id="email_error"></small><br>
 
         <h1>Quiz:</h1><hr>
-        <label for="question1">Which countries were part of the axis powers in ww2?:</label><br>
+        <label for="question1" class="label">Which countries were part of the axis powers in WW2?</label><br>
         <input type="checkbox" id="question1" name="question1" value="1">
         <label for="question1">Italy</label><br>
         <input type="checkbox" id="question1" name="question1" value="2">
@@ -29,7 +29,7 @@
         <input type="checkbox" id="question1" name="question1" value="3">
         <label for="question1">Germany</label><br>
         <small id="question1_error"></small><hr>
-        <label for="question2">In what year did ww2 start?:</label><br>
+        <label for="question2" class="label">In what year did WW2 start?</label><br>
         <input type="radio" id="question2" name="question2" value="1">
         <label for="question2">1939</label><br>
         <input type="radio" id="question2" name="question2" value="2">
@@ -37,12 +37,12 @@
         <input type="radio" id="question2" name="question2" value="3">
         <label for="question2">1941</label><br>
         <small id="question2_error"></small><hr>
-        <label for="question3">What is the capital of France?: </label><br>
+        <label for="question3" class="label">What is the capital of France? </label><br>
         <input type="text" id="question3" name="question3"><br><br>
         <small id="question3_error"></small><hr>
         <input type="submit" id="submit">
-        <input type="reset">
-        <input type="button" onclick="test()" value="Show result"></input>
+        <input type="button" onclick="window.location.reload();" value="Reset quiz"></input>
+        <input type="button" onclick="showResult()" value="Show result"></input>
       </form>
 
       <p id="score"></p>

@@ -1,5 +1,5 @@
 
-function validate() {
+function validate(skip) {
     const ERROR_STYLE = "border-color: red";
 
     let score = 0;
@@ -25,6 +25,7 @@ function validate() {
     document.getElementById("fname").style = "default";
     document.getElementById("lname").style = "default";
     document.getElementById("email").style = "default";
+    document.getElementById("question1").style = "border-color: red"
 
 
  
@@ -73,25 +74,29 @@ function validate() {
         valid = false;
     }
     if (!valid){
-        return false
+        return false;
     }
-    if (radio == 1){
-        score += 1;
-    }
+    // check if this block of code should be skipped
+    if (!skip){
+        if (radio == 1){
+            score += 1;
+        }
         
-    if (checkbox[0] && !checkbox[1] && checkbox[2]){
-        score += 2;
-    } else if ((checkbox[0] || checkbox[2]) && !checkbox[1]){
-        score += 1;
-    }
+        if (checkbox[0] && !checkbox[1] && checkbox[2]){
+            score += 2;
+        } else if ((checkbox[0] || checkbox[2]) && !checkbox[1]){
+            score += 1;
+        }
     
-    if (/paris/i.test(text)){
-        score += 1
+        if (/paris/i.test(text)){
+            score += 1
+        }
+        alert("Your score " + score + "/4 points was submitted");
     }
-    alert("Your score is " + score + "/4");
+    return true;
 }
 
-function test(){
+function showResult(){
     let score = 0;
     let radio = document.forms["myForm"]["question2"].value;
     let text = document.forms["myForm"]["question3"].value;
@@ -99,6 +104,10 @@ function test(){
     for (let i = 0; i < 3; i++){
         checkbox.push(document.forms["myForm"]["question1"][i].checked)
     }
+    const valid = validate(true);
+    if (!valid){
+        return
+    }
     if (radio == 1){
         score += 1;
     }
@@ -109,10 +118,23 @@ function test(){
         score += 1;
     }
     
-    if (/paris/i.test(text)){
+    if (/^paris$/i.test(text)){
         score += 1
     }
-    document.getElementById("score").innerHTML = "Your score is " + score + "/4";
+    document.getElementById("score").innerHTML = "You scored " + score + "/4 points";
+    document.getElementById("score").style.display = "block";
 
 
+    // Disables questions so that you can not change answers after getting result
+    const question1 = document.getElementsByName("question1");
+    for (let i = 0; i < question1.length; i++){
+        question1[i].setAttribute("disabled", "true")
+    }
+    
+    const question2 = document.getElementsByName("question2");
+    for (let i = 0; i < question2.length; i++){
+        question2[i].setAttribute("disabled", "true")
+    }
+    
+    document.getElementById("question3").setAttribute("disabled", "true")
 }
